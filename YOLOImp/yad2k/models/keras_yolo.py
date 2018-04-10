@@ -96,7 +96,7 @@ def yolo_head(feats, anchors, num_classes):
     conv_height_index = K.arange(0, stop=conv_dims[0])
     conv_width_index = K.arange(0, stop=conv_dims[1])
     conv_height_index = K.tile(conv_height_index, [conv_dims[1]])
-
+    print(conv_dims[1].eval())
     # TODO: Repeat_elements and tf.split doesn't support dynamic splits.
     # conv_width_index = K.repeat_elements(conv_width_index, conv_dims[1], axis=0)
     conv_width_index = K.tile(K.expand_dims(conv_width_index, 0), [conv_dims[0], 1])
@@ -105,9 +105,10 @@ def yolo_head(feats, anchors, num_classes):
     conv_index = K.reshape(conv_index, [1, conv_dims[0], conv_dims[1], 1, 2])
     conv_index = K.cast(conv_index, K.dtype(feats))
     
+    print(conv_index.shape)
     feats = K.reshape(feats, [-1, conv_dims[0], conv_dims[1], num_anchors, num_classes + 5])
     conv_dims = K.cast(K.reshape(conv_dims, [1, 1, 1, 1, 2]), K.dtype(feats))
-
+    print(feats[0])
     # Static generation of conv_index:
     # conv_index = np.array([_ for _ in np.ndindex(conv_width, conv_height)])
     # conv_index = conv_index[:, [1, 0]]  # swap columns for YOLO ordering.

@@ -33,6 +33,7 @@
     <Compile Include="yad2k\models\keras_yolo.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="yad2k\models\modelV3.py" />
     <Compile Include="yad2k\utils\utils.py">
       <SubType>Code</SubType>
     </Compile>

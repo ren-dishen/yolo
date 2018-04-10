@@ -6,3 +6,6 @@
 /YOLOImp/images
 /YOLOImp/out
 /YOLOImp/video
+/YOLOImp/model_data/yolov3.cfg
+/YOLOImp/model_data/yolov3.h5
+/YOLOImp/model_data/yolov3.weights

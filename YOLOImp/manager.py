@@ -130,7 +130,7 @@ def yolo_eval(yolo_outputs, image_shape = (720., 1280.), max_boxes=10, score_thr
     
     return scores, boxes, classes
 
-def predict(sess, image_file):
+def predict(sess, image_file, data):
     """
     Runs the graph stored in "sess" to predict boxes for "image_file". Prints and plots the preditions.
     
@@ -149,7 +149,7 @@ def predict(sess, image_file):
     # Preprocess your image
     image, image_data = preprocess_image(image_file, model_image_size = (608, 608))
     time1 = time.time()
-    out_scores, out_boxes, out_classes = sess.run((scores, boxes, classes), feed_dict={yolo_model.input: image_data , K.learning_phase(): 0})
+    out_scores, out_boxes, out_classes = sess.run((data), feed_dict={yolo_model.input: image_data , K.learning_phase(): 0})
     time2 = time.time()
     colors = generate_colors(class_names)
     time3 = time.time()
@@ -172,7 +172,7 @@ def predict(sess, image_file):
     
     return out_scores, out_boxes, out_classes
 
-def predictImage(sess, image_file):
+def predictImage(sess, image_file, data):
     """
     Runs the graph stored in "sess" to predict boxes for "image_file". Prints and plots the preditions.
     
@@ -189,9 +189,10 @@ def predictImage(sess, image_file):
     """
     startTime = time.time()
     # Preprocess your image
-    image, image_data = preprocess_image("images/" +image_file, model_image_size = (608, 608))
+    image, image_data = preprocess_image("images/" +image_file, model_image_size = (416, 416))
     time1 = time.time()
-    out_scores, out_boxes, out_classes = sess.run((scores, boxes, classes), feed_dict={yolo_model.input: image_data , K.learning_phase(): 0})
+    print(image_data)
+    out_scores, out_boxes, out_classes = sess.run((data), feed_dict={yolov3_model.input: image_data , K.learning_phase(): 0})
     time2 = time.time()
     colors = generate_colors(class_names)
     time3 = time.time()
