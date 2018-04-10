@@ -3,3 +3,6 @@
 ################################################################################
 
 /YOLOImp/model_data/yolo.h5
+/YOLOImp/images
+/YOLOImp/out
+/YOLOImp/video
